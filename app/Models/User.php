@@ -26,6 +26,7 @@ class User extends Authenticatable implements IMustVerifyMobile
         'password',
         'mobile_number',
         'mobile_verify_code',
+        'mobile_attempts_left',
     ];
 
     /**

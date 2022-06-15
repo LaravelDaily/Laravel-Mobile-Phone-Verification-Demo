@@ -17,6 +17,17 @@ class VerifyMobileController extends Controller
             'code' => ['required', 'numeric'],
         ]);
 
+        if($request->user()->mobile_attempts_left <= 0) {
+            $request->user()->update([
+                'mobile_verify_code' => random_int(111111, 999999),
+                'mobile_attempts_left' =>  env('MOBILE_MAX_ATTEMPTS', 3),
+            ]);
+            $request->user()->sendMobileVerificationNotification();
+        }
+        else {
+            $request->user()->decrement('mobile_attempts_left');
+        }
+
         if ($request->code === auth()->user()->mobile_verify_code) {
             $request->user()->markMobileAsVerified();
 
