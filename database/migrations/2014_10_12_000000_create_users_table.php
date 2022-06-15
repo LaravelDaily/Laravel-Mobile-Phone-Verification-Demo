@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('mobile_number')->unique();
             $table->timestamp('mobile_verified_at')->nullable();
             $table->string('mobile_verify_code')->nullable();
-            $table->tinyInteger('mobile_attempts_left')->nullable();
+            $table->tinyInteger('mobile_attempts_left')->default(0);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
