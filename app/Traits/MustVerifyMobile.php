@@ -15,6 +15,7 @@ trait MustVerifyMobile
     {
         return $this->forceFill([
             'mobile_verified_at' => $this->freshTimestamp(),
+            'mobile_attempts_left' => 0,
         ])->save();
     }
 
