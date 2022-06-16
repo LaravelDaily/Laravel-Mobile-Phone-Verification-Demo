@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,7 @@ class RegisteredUserController extends Controller
             'mobile_number' => $request->mobile_number,
             'mobile_verify_code' => random_int(111111, 999999),
             'mobile_attempts_left' => config('mobile.max_attempts'),
+            'mobile_last_send' => Carbon::now(),
         ]);
 
         event(new Registered($user));
