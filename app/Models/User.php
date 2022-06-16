@@ -37,6 +37,7 @@ class User extends Authenticatable implements IMustVerifyMobile
     protected $hidden = [
         'password',
         'remember_token',
+        'mobile_verify_code',
     ];
 
     /**
