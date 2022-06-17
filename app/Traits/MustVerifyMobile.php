@@ -19,8 +19,16 @@ trait MustVerifyMobile
         ])->save();
     }
 
-    public function sendMobileVerificationNotification(): void
+    public function sendMobileVerificationNotification(bool $newData = false): void
     {
+        if($newData)
+        {
+            $this->forceFill([
+                'mobile_verify_code' => random_int(111111, 999999),
+                'mobile_attempts_left' => config('mobile.max_attempts'),
+                'mobile_verify_code_sent_at' => now(),
+            ]);
+        }
         $this->notify(new SendVerifySMS);
     }
 }

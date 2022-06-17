@@ -7,10 +7,23 @@ return [
     | Mobile code max attempts
     |--------------------------------------------------------------------------
     |
-    | Max attempts to input mobile verification code before re-send a new one
+    | Max attempts to input mobile verification code before re-send a new one.
+    | Set 0 for not use this feature.
     |
     */
 
     'max_attempts' => env('MOBILE_MAX_ATTEMPTS', 3),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Mobile seconds of validation
+    |--------------------------------------------------------------------------
+    |
+    | Seconds of validation of the sent verification code (default 5 minutes).
+    | Set 0 for not use this feature.
+    |
+    */
+
+    'seconds_of_validation' => env('MOBILE_SECONDS_OF_VALIDATION', 300),
 
 ];
