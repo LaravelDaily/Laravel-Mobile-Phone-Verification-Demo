@@ -18,6 +18,6 @@ return [
     'new_code' => 'Invalid verification code entered! A new code has been sent to your mobile.',
     'error_code' => 'Invalid verification code entered!',
     'error_with_attempts' => 'Invalid verification code entered! :attempts tries left.',
-    'error_wait' => 'Wait :minutes minutes before try again.',
+    'error_wait' => 'Wait :seconds seconds before try again.',
 
 ];

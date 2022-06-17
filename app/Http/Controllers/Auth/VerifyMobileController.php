@@ -21,7 +21,7 @@ class VerifyMobileController extends Controller
         // If the seconds_of_validation feature is enabled 
         if (config('mobile.seconds_of_validation') > 0) {
             $lastSend = Carbon::parse($request->user()->mobile_verify_code_sent_at);
-            if ($lastSend->diffInMinutes(Carbon::now()) > config('mobile.seconds_of_validation')) {
+            if ($lastSend->diffInSeconds(Carbon::now()) > config('mobile.seconds_of_validation')) {
                 $request->user()->sendMobileVerificationNotification(true);
                 return back()->with(['error' => __('mobile.expired')]);
             }
@@ -42,8 +42,8 @@ class VerifyMobileController extends Controller
                 // If the seconds_of_validation feature is enabled 
                 if (config('mobile.seconds_of_validation') > 0) {
                     $lastSend = Carbon::parse($request->user()->mobile_verify_code_sent_at);
-                    $minutesToWait = config('mobile.seconds_of_validation') - $lastSend->diffInMinutes(Carbon::now());
-                    return back()->with(['error' => __('mobile.error_wait', ['minutes' => $minutesToWait])]);
+                    $secondsToWait = config('mobile.seconds_of_validation') - $lastSend->diffInSeconds(Carbon::now());
+                    return back()->with(['error' => __('mobile.error_wait', ['seconds' => $secondsToWait])]);
                 }
                 
                 $request->user()->sendMobileVerificationNotification(true);
