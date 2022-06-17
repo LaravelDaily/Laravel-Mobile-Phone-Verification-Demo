@@ -40,7 +40,6 @@ class VerifyMobileController extends Controller
                 if($request->user()->mobile_attempts_left == 1) $request->user()->decrement('mobile_attempts_left');
 
                 $seconds_left = (int) config('mobile.attempts_ban_seconds') - $request->user()->mobile_last_attempt_date->diffInSeconds();
-                
                 if ($seconds_left > 0) {
                     return back()->withErrors(['error' => __('mobile.error_wait', ['seconds' => $seconds_left])]);
                 }
