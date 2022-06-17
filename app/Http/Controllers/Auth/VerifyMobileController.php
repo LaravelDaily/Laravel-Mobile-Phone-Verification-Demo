@@ -18,10 +18,10 @@ class VerifyMobileController extends Controller
             'code' => ['required', 'numeric'],
         ]);
 
-        // If the minutes_of_validation feature is enabled 
-        if(config('mobile.minutes_of_validation') > 0) {
-            $lastSend = Carbon::parse($request->user()->mobile_last_send);
-            if($lastSend->diffInMinutes(Carbon::now()) > config('mobile.minutes_of_validation')) {
+        // If the seconds_of_validation feature is enabled 
+        if (config('mobile.seconds_of_validation') > 0) {
+            $lastSend = Carbon::parse($request->user()->mobile_verify_code_sent_at);
+            if ($lastSend->diffInMinutes(Carbon::now()) > config('mobile.seconds_of_validation')) {
                 $request->user()->sendMobileVerificationNotification(true);
                 return back()->with(['error' => __('mobile.expired')]);
             }
@@ -34,15 +34,15 @@ class VerifyMobileController extends Controller
         }
 
         // Max attempts feature
-        if(config('mobile.max_attempts') > 0) {
+        if (config('mobile.max_attempts') > 0) {
 
             $request->user()->decrement('mobile_attempts_left');
-            if($request->user()->mobile_attempts_left <= 0) {
+            if ($request->user()->mobile_attempts_left <= 0) {
 
-                // If the minutes_of_validation feature is enabled 
-                if(config('mobile.minutes_of_validation') > 0) {
-                    $lastSend = Carbon::parse($request->user()->mobile_last_send);
-                    $minutesToWait = config('mobile.minutes_of_validation') - $lastSend->diffInMinutes(Carbon::now());
+                // If the seconds_of_validation feature is enabled 
+                if (config('mobile.seconds_of_validation') > 0) {
+                    $lastSend = Carbon::parse($request->user()->mobile_verify_code_sent_at);
+                    $minutesToWait = config('mobile.seconds_of_validation') - $lastSend->diffInMinutes(Carbon::now());
                     return back()->with(['error' => __('mobile.error_wait', ['minutes' => $minutesToWait])]);
                 }
                 

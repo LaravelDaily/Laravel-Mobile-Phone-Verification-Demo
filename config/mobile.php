@@ -16,14 +16,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Mobile minutes of validation
+    | Mobile seconds of validation
     |--------------------------------------------------------------------------
     |
-    | Minutes of validation of the sent verification code (default 5 minutes).
+    | Seconds of validation of the sent verification code (default 5 minutes).
     | Set 0 for not use this feature.
     |
     */
 
-    'minutes_of_validation' => env('MOBILE_MINUTES_OF_VALIDATION', 300),
+    'seconds_of_validation' => env('MOBILE_SECONDS_OF_VALIDATION', 300),
 
 ];

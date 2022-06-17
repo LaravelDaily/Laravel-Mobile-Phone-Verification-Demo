@@ -47,8 +47,8 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'mobile_number' => $request->mobile_number,
             'mobile_verify_code' => random_int(111111, 999999),
+            'mobile_verify_code_sent_at' => Carbon::now(),
             'mobile_attempts_left' => config('mobile.max_attempts'),
-            'mobile_last_send' => Carbon::now(),
         ]);
 
         event(new Registered($user));
