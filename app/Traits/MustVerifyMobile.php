@@ -3,7 +3,6 @@
 namespace App\Traits;
 
 use App\Notifications\SendVerifySMS;
-use Carbon\Carbon;
 
 trait MustVerifyMobile
 {
@@ -27,7 +26,7 @@ trait MustVerifyMobile
             $this->forceFill([
                 'mobile_verify_code' => random_int(111111, 999999),
                 'mobile_attempts_left' => config('mobile.max_attempts'),
-                'mobile_verify_code_sent_at' => Carbon::now(),
+                'mobile_verify_code_sent_at' => now(),
             ]);
         }
         $this->notify(new SendVerifySMS);
