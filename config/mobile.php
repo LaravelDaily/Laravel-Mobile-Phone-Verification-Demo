@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'max_attempts' => env('MOBILE_MAX_ATTEMPTS', 3),
+    'max_attempts' => env('MOBILE_MAX_ATTEMPTS', 3)?:3,
 
     /*
     |--------------------------------------------------------------------------
@@ -24,6 +24,17 @@ return [
     |
     */
 
-    'seconds_of_validation' => env('MOBILE_SECONDS_OF_VALIDATION', 300),
+    'seconds_of_validation' => env('MOBILE_SECONDS_OF_VALIDATION', 300)?:300,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Mobile attempts ban seconds
+    |--------------------------------------------------------------------------
+    |
+    | Seconds of ban when no attempts left (default 10 minutes).
+    |
+    */
+
+    'attempts_ban_seconds' => env('MOBILE_ATTEMPTS_BAN_SEOCNDS', 600)?:600,
 
 ];

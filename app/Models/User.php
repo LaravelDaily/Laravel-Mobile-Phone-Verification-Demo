@@ -27,7 +27,8 @@ class User extends Authenticatable implements IMustVerifyMobile
         'mobile_number',
         'mobile_verify_code',
         'mobile_attempts_left',
-        'mobile_last_send',
+        'mobile_last_attempt_date',
+        'mobile_verify_code_sent_at',
     ];
 
     /**
@@ -49,7 +50,8 @@ class User extends Authenticatable implements IMustVerifyMobile
     protected $casts = [
         'email_verified_at' => 'datetime',
         'number_verified_at' => 'datetime',
-        'mobile_last_send' => 'datetime',
+        'mobile_verify_code_sent_at' => 'datetime',
+        'mobile_last_attempt_date' => 'datetime'
     ];
 
     public function routeNotificationForVonage($notification)
