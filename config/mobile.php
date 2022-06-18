@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'max_attempts' => env('MOBILE_MAX_ATTEMPTS', 3)?:3,
+    'max_attempts' => env('MOBILE_MAX_ATTEMPTS', 3)?:0,
 
     /*
     |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'seconds_of_validation' => env('MOBILE_SECONDS_OF_VALIDATION', 300)?:300,
+    'seconds_of_validation' => env('MOBILE_SECONDS_OF_VALIDATION', 300)?:0,
 
     /*
     |--------------------------------------------------------------------------
@@ -35,6 +35,6 @@ return [
     |
     */
 
-    'attempts_ban_seconds' => env('MOBILE_ATTEMPTS_BAN_SEOCNDS', 600)?:600,
+    'attempts_ban_seconds' => env('MOBILE_ATTEMPTS_BAN_SEOCNDS', 600)?:0,
 
 ];
