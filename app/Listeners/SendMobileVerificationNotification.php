@@ -13,7 +13,7 @@ class SendMobileVerificationNotification
     public function handle(Registered $event)
     {
         if ($event->user instanceof MustVerifyMobile && ! $event->user->hasVerifiedMobile()) {
-            $event->user->sendMobileVerificationNotification();
+            $event->user->sendMobileVerificationNotification(true);
         }
     }
 }
